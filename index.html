@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Techlands Collage</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<main class="container">
+		<div class="content">
+			<button data-url="http://luckysoap.com/statements/handmadeweb.html"><img src="assets/handmade-web1.png"></button>
+			<button data-url="http://luckysoap.com/statements/handmadeweb.html"><img src="assets/handmade-web2.png"></button>
+			<button data-url="http://luckysoap.com/statements/handmadeweb.html"><img src="assets/handmade-web3.png"></button>
+			<button data-url="http://luckysoap.com/statements/handmadeweb.html"><img src="assets/handmade-web4.png"></button>
+			<button data-url="http://luckysoap.com/statements/handmadeweb.html"><img src="assets/handmade-web5.png"></button>
+			<button data-url="http://luckysoap.com/statements/handmadeweb.html"><img src="assets/handmade-web6.png"></button>
+			<button data-url="https://www.typotheque.com/articles/typeface_as_programme"><img src="assets/typeface-as-programme.png"></button>
+			<button data-url="https://www.typotheque.com/articles/typeface_as_programme"><img src="assets/typeface-as-programme1.png"></button>
+			<button data-url="https://www.typotheque.com/articles/typeface_as_programme"><img src="assets/typeface-as-programme2.png"></button>
+			<button data-url="https://www.typotheque.com/articles/typeface_as_programme"><img src="assets/typeface-as-programme3.png"></button>
+			<button data-url="https://www.typotheque.com/articles/typeface_as_programme"><img src="assets/typeface-as-programme4.png"></button>
+			<button data-url="readings/lucierCarefulLIstening.pdf"><img src="assets/careful-listening.jpg"></button>
+			<button data-url="https://medium.com/@liv__king/a-font-for-the-people-cb426527ece4"><img src="assets/derwent-valley.jpg"></button>
+			<button data-url="https://bjoernkarmann.dk/project/occlution_grotesque"><img src="assets/occlusion1.jpg"></button>
+			<button data-url="https://bjoernkarmann.dk/project/occlution_grotesque"><img src="assets/occlusion2.jpg"></button>
+			<button data-url="https://bjoernkarmann.dk/project/occlution_grotesque"><img src="assets/occlusion3.jpg"></button>
+			<button data-url="readings/gd-risd-form2-uo2.pdf"><img src="assets/urging-osmosis1.jpg"></button>
+			<button data-url="readings/gd-risd-form2-uo2.pdf"><img src="assets/urging-osmosis2.jpg"></button>
+			<button data-url="readings/gd-risd-form2-uo2.pdf"><img src="assets/urging-osmosis3.jpg"></button>
+			<button data-url="readings/gd-risd-form2-uo2.pdf"><img src="assets/urging-osmosis4.jpg"></button>
+			<button data-url="readings/gd-risd-form2-uo2.pdf"><img src="assets/urging-osmosis5.jpg"></button>
+			<button data-url="readings/gd-risd-form2-uo2.pdf"><img src="assets/urging-osmosis6.jpg"></button>
+			<button data-url="https://dluo01.github.io/danluo-web-type/variable-font/index.html"><img src="assets/choreo.gif"></button>
+			<button data-url="https://gabrieldrozdov.github.io/vfw23/"><img src="assets/vfw.gif"></button>
+			<button data-url="https://gabrieldrozdov.github.io/vfw23/"><img src="assets/vfw2.jpg"></button>
+			<button data-url="http://www.jennioughton.com/graphic-design#/type-design/"><img src="assets/kudzu1.jpg"></button>
+			<button data-url="http://www.jennioughton.com/graphic-design#/type-design/"><img src="assets/kudzu2.jpg"></button>
+			<button data-url="assets/transformative.pdf"><img src="assets/transformative.png"></button>
+			<button data-url="assets/collab.pdf"><img src="assets/collab.png"></button>
+			<button data-url="https://www.vocaltype.co/history-of/martin"><img src="assets/vocal.jpg"></button>
+			<button data-url="http://formandcode.com/"><img src="assets/form-code.jpg"></button>
+			<button data-url="https://mitpress.mit.edu/9780262534512/play-matters/"><img src="assets/play-matters.jpg"></button>
+			<button data-url="https://www.routledge.com/The-Transformative-Power-of-Performance-A-New-Aesthetics/Fischer-Lichte/p/book/9780415458566#:~:text=Book%20Description,-In%20this%20book&text=The%20peculiar%20mode%20of%20experience,wider%20social%20and%20cultural%20processes."><img src="assets/transformative2.jpg"></button>
+			<button data-url="https://tristanperich.bandcamp.com/album/1-bit-symphony"><img src="assets/1bit.jpg"></button>
+			<button data-url="https://en.wikipedia.org/wiki/The_Witness_(2016_video_game)"><img src="assets/witness.jpg"></button>
+			<button data-url="https://en.wikipedia.org/wiki/Baba_Is_You"><img src="assets/baba-is-you.jpg"></button>
+			<button data-url="https://en.wikipedia.org/wiki/Different_Trains"><img src="assets/different-trains.jpg"></button>
+		</div>
+	</main>
+
+	<script>
+		let links = document.querySelectorAll("button");
+		let content = document.querySelector(".content");
+		let container = document.querySelector(".container");
+
+		for (let link of links) {
+			link.addEventListener("mouseenter", linkHover);
+			link.addEventListener("mousedown", linkTimer, false);
+			dragElement(link);
+		}
+
+		// set current link to the top
+		let currentZ = 1;
+		function linkHover() {
+			this.style.zIndex = currentZ;
+			currentZ++;
+		}
+
+		// only navigate to link if quickly pressed
+		function linkTimer(event) {
+			this.addEventListener("mouseup", linkNav);
+			setTimeout(() => {
+				this.removeEventListener("mouseup", linkNav);
+			}, 200);
+		}
+		function linkNav() {
+			window.open(this.dataset.url, '_blank');
+		}
+
+		// initalize positions of all collage elements
+		let i = 0;
+		let initalize = setInterval(() => {
+			let link = links[i];
+			link.style.top = Math.random()*90 + "%";
+			link.style.left = Math.random()*90 + "%";
+			link.style.transform = `scale(1) rotate(${Math.random()*80-40}deg)`;
+			i++;
+			if (i >= links.length) {
+				clearInterval(initalize);
+				resizeCollage();
+			}
+		}, 100)
+
+		// resize area after initialization
+		function resizeCollage() {
+			setTimeout(() => {
+				content.style.width = "500vw";
+				content.style.height = "500vh";
+				for (let link of links) {
+					link.style.pointerEvents = "all";
+					link.style.width = "70vw";
+				}
+			}, 500)
+		}
+
+		// make collage elements draggable
+		function dragElement(elmnt) {
+			let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+			elmnt.onmousedown = dragMouseDown;
+			
+			function dragMouseDown(e) {
+				e = e || window.event;
+				// get the mouse cursor position at startup:
+				pos3 = e.clientX;
+				pos4 = e.clientY;
+				document.onmouseup = closeDragElement;
+				// call a function whenever the cursor moves:
+				document.onmousemove = elementDrag;
+				elmnt.style.cursor = "grabbing";
+			}
+		
+			function elementDrag(e) {
+				e = e || window.event;
+				e.preventDefault();
+				// calculate the new cursor position:
+				pos1 = pos3 - e.clientX;
+				pos2 = pos4 - e.clientY;
+				pos3 = e.clientX;
+				pos4 = e.clientY;
+				// set the element's new position:
+				elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+				elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+			}
+		
+			function closeDragElement() {
+				// stop moving when mouse button is released:
+				document.onmouseup = null;
+				document.onmousemove = null;
+				elmnt.style.cursor = "pointer";
+			}
+		}
+	</script>
+</body>
+</html>
